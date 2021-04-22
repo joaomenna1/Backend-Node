@@ -7,15 +7,20 @@ class sendMailService {
 
   constructor() {
 
+    nodemailer.createTestAccount().then((account) => {
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'evoney.tavares@kumbi.com.br',
-            pass: 'Ide150313#'
-        }
+          host: account.smtp.host,
+          port: account.smtp.port,
+          secure: account.smtp.secure,
+          auth: {
+              user: account.user,
+              pass: account.pass,
+          }
       });
 
       this.client = transporter;
+  })
+  
   }
 
   async execute(to: string, subject: string, variables: object, path: string) {
