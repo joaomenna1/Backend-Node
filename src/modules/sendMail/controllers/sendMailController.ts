@@ -4,7 +4,7 @@ import path from 'path';
 
 class SendMailController {
   async execute(request: Request, response: Response) {
-   
+
   const template = path.resolve(__dirname, "..", "views", "email", "template.hbs");
   const variables = {
     name: "name",
